@@ -6,40 +6,41 @@ namespace Functional_Paradigm_LINQ
 {
     class Program
     {
-        delegate void MethodAdd (int i);
+        delegate void MethodAdd(int i);
+
         static void Main(string[] args)
         {
-            var c = new List<int>();           
-            MethodAdd method = delegate (int i)
-            {
-                c.Add(i);
-            };
-            MethodAdd method1 = c.Add;
-            
+            var collection = new List<int>();
+
+            MethodAdd method_1 = collection.Add;
+
             Action<int> action = (int i) =>
             {
-                c.Add(i);
+                collection.Add(i);
             };
-            
 
-            method(6);
-            method(20);
-            method(30);
-            method(50);
+            MethodAdd method_2 = delegate (int i)
+             {
+                 collection.Add(i);
+             };
+
+            method_1(500);
+            method_1(600);
+            method_1(700);
+            method_1(800);
+
+            method_2(6);
+            method_2(20);
+            method_2(30);
+            method_2(50);
 
             action(100);
             action(200);
             action(300);
             action(400);
 
-            method1(500);
-            method1(600);
-            method1(700);
-            method1(800);
-
-
-            foreach (var a in c)
+            foreach (var a in collection)
                 Console.WriteLine(a);
-        }        
+        }
     }
 }
