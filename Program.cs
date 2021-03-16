@@ -59,7 +59,6 @@ namespace Functional_Paradigm_LINQ
                 Console.WriteLine("gsdajhdbajk");
             };
 
-
             method_3(500);
             method_3(600);
             method_3(700);
