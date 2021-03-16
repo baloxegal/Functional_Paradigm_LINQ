@@ -48,7 +48,13 @@ namespace Functional_Paradigm_LINQ
             
             method_4 += Console.WriteLine;
 
-            Action<int> action = x => collection.Add(x);            
+            Action<int> action = x => collection.Add(x);
+            Action<int> action_1 = collection.Add;
+            Action<int> action_2 = delegate (int i)
+            {
+                collection.Add(i);
+            };
+
 
             method_3(500);
             method_3(600);
