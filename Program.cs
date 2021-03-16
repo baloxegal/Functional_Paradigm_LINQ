@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace Functional_Paradigm_LINQ
         public delegate int MethodMultiply(int i);
         public delegate void MethodAdd(int i);
         
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             List<int> collection = new List<int>();
 
@@ -118,7 +119,8 @@ namespace Functional_Paradigm_LINQ
             myClassList.Add(new MyClass { MyProperty_2 = 500 });
             myClassList.Add(new MyClass { MyProperty_2 = 600 });
 
-            var newCollection_4 = myClassList.Where(x => x.MyProperty_2 > 100).Select(x => x.MyProperty_2);
+            var newCollection_4 = myClassList.Where(x => x.MyProperty_2 > 100).Select(x => x.MyProperty_2).ToList();
+            myClassList.Add(new MyClass { MyProperty_2 = 1000 });
             foreach (var z in newCollection_4)
                 Console.WriteLine(z);
             Console.WriteLine("=================================");
@@ -130,7 +132,28 @@ namespace Functional_Paradigm_LINQ
             foreach (var z in newCollection_6)
                 Console.WriteLine(z);
             Console.WriteLine("=================================");
-        }
+
+            List<MyClass>/*IEnumerable<MyClass>*/ MyFunc(List<MyClass> mc, Predicate<int> pr)
+            {
+                //var vt = mc.Where(x => x.MyProperty_2 < 600);
+                //var vt = mc.Where(x => pr(x.MyProperty_2));
+                var vt = new List<MyClass>();
+                foreach (var vm in mc)
+                {
+                    if (pr(vm.MyProperty_2))
+                    {
+                        vt.Add(vm);
+                    }
+                }
+                return vt;
+            }
+
+            var cvb = MyFunc(myClassList, x => x < 600);
+            foreach(var df in cvb)
+            {
+                Console.WriteLine(df.MyProperty_2);
+            }            
+        }        
     }
 
     class MyClass
@@ -152,7 +175,17 @@ namespace Functional_Paradigm_LINQ
         }
         public static int MyFunction_3(int i, Func<int, int> func)
         {
-            return i * func(i);
+            var y = MyExtesion.MyExt(i, i);
+            var z = i.MyExt(i);
+            return (y + z) * func(i);
+        }        
+    }
+
+    static class MyExtesion
+    {
+        public static int MyExt(this int i, int y)
+        {
+            return y * 2;
         }
     }
 }
