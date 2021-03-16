@@ -50,9 +50,13 @@ namespace Functional_Paradigm_LINQ
 
             Action<int> action = x => collection.Add(x);
             Action<int> action_1 = collection.Add;
-            Action<int> action_2 = delegate (int i)
+            Action<int> action_2 = delegate (int x)
             {
-                collection.Add(i);
+                collection.Add(x);
+            };
+            Action action_3 = delegate ()
+            {
+                Console.WriteLine("gsdajhdbajk");
             };
 
 
