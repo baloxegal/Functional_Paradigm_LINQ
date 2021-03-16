@@ -18,7 +18,11 @@ namespace Functional_Paradigm_LINQ
             Console.WriteLine(method_1(100));
             Console.WriteLine("=================================");
 
-            MethodMultiply method_2 = (x) => x * 2000;
+            //MethodMultiply method_2 = (x) => x * 2000;
+            int method_2(int i)
+            {
+                return  i * 2000;
+            }
 
             Console.WriteLine(method_2(100));
             Console.WriteLine("=================================");
@@ -103,10 +107,13 @@ namespace Functional_Paradigm_LINQ
             Console.WriteLine(newCollection_3);
             Console.WriteLine("=================================");
 
-            List<MyClass> myClassList = new List<MyClass>();
-            myClassList.Add(new MyClass { MyProperty_2 = 100 });
-            myClassList.Add(new MyClass { MyProperty_2 = 200 });
-            myClassList.Add(new MyClass { MyProperty_2 = 300 });
+            var myClassList = new List<MyClass>();
+            {
+                new MyClass { MyProperty_2 = 100 };
+                new MyClass { MyProperty_2 = 200 };
+                new MyClass { MyProperty_2 = 300 };
+            }
+            
             myClassList.Add(new MyClass { MyProperty_2 = 400 });
             myClassList.Add(new MyClass { MyProperty_2 = 500 });
             myClassList.Add(new MyClass { MyProperty_2 = 600 });
